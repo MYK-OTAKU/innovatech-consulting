@@ -55,26 +55,26 @@ const projets = [
   {
     name: 'DIGICARD',
     desc: 'Solution de cartes de visite digitales sécurisées et traçables.',
-    img: '/Images/ai-hand-brain.webp',
+    img: '/LoginBackground.jpeg',
     cta: 'Explorer',
   },
   {
     name: 'Cyber MSSP',
     desc: 'Offre MSSP complète pour une cybersécurité proactive.',
-    img: '/Images/cybersecurity-firewall.webp',
+    img: '/Images/code-reflection-digital.webp',
     cta: 'En savoir plus',
   },
 ]
 
-// Animation variants inspirés de la page Home
+// Animation variants
 const sectionReveal = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.9,
+      duration: 1.4,
       ease: [0.19, 1, 0.22, 1],
-      staggerChildren: 0.16,
+      staggerChildren: 0.25,
     },
   },
 }
@@ -85,7 +85,7 @@ const fadeItem = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.95,
+      duration: 1.5,
       ease: [0.19, 1, 0.22, 1],
     },
   },
@@ -97,9 +97,9 @@ const leftColumn = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.2,
+      duration: 1.8,
       ease: [0.19, 1, 0.22, 1],
-      staggerChildren: 0.2,
+      staggerChildren: 0.3,
     },
   },
 }
@@ -110,7 +110,7 @@ const rightColumn = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.3,
+      duration: 1.9,
       ease: [0.19, 1, 0.22, 1],
     },
   },
@@ -122,7 +122,7 @@ const cardVariants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.95,
+      duration: 1.5,
       ease: [0.19, 1, 0.22, 1],
     },
   },
@@ -133,8 +133,8 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.18,
-      delayChildren: 0.1,
+      staggerChildren: 0.28,
+      delayChildren: 0.15,
     },
   },
 }
@@ -144,24 +144,28 @@ export default function About() {
     <div className="bg-white">
       {/* Hero Section */}
       <motion.section
-        className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white"
+        className="relative overflow-hidden text-white"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={sectionReveal}
       >
-        <div className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-28 sm:px-6 lg:px-8">
+        {/* Image de fond avec overlay */}
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="/bureau.avif" 
+            alt="Bureau Innovatech" 
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-slate-800/85 to-slate-900/90" />
+        </div>
+
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-28 sm:px-6 lg:px-8">
           <motion.div className="max-w-3xl space-y-4" variants={leftColumn}>
-            <motion.div 
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/80"
-              variants={fadeItem}
-            >
-              Innovatech Consulting
-            </motion.div>
-            <motion.h1 className="text-4xl font-bold leading-tight sm:text-5xl" variants={fadeItem}>
-              À propos de Innovatech Consulting
+            <motion.h1 className="text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl" variants={fadeItem}>
+              À propos de<br />Innovatech Consulting
             </motion.h1>
-            <motion.p className="text-base leading-7 text-white/80" variants={fadeItem}>
+            <motion.p className="text-lg leading-8 text-white/90 sm:text-xl lg:text-2xl" variants={fadeItem}>
               Votre partenaire dans la digitalisation sécurisée – Pionnier de la cybersécurité au Maroc
             </motion.p>
           </motion.div>
@@ -205,7 +209,7 @@ export default function About() {
 
       {/* Mission Section */}
       <motion.section 
-        className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 lg:px-8"
+        className="mx-auto w-full max-w-6xl px-4 py-16 sm:px-6 lg:px-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -216,15 +220,12 @@ export default function About() {
             className="space-y-6"
             variants={leftColumn}
           >
-            <motion.span 
-              className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-slate-500"
-              variants={fadeItem}
-            >
+            <motion.h2 className="text-4xl font-bold text-slate-900 sm:text-5xl" variants={fadeItem}>
               Notre mission
-            </motion.span>
-            <motion.h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl" variants={fadeItem}>
-              Un accompagnement cyber complet, de la stratégie à l'exécution
             </motion.h2>
+            <motion.p className="text-2xl font-semibold text-slate-700 sm:text-3xl" variants={fadeItem}>
+              Un accompagnement cyber complet, de la stratégie à l'exécution
+            </motion.p>
             <motion.div className="space-y-4 text-base leading-7 text-slate-600" variants={fadeItem}>
               <p>
                 Fondée sur l'expertise et le dévouement, notre entreprise vise à garantir la sécurité et la résilience de vos systèmes d'information grâce à une gamme de services spécialisés.
@@ -248,7 +249,7 @@ export default function About() {
             className="grid gap-5 rounded-[28px] border border-slate-200 bg-white p-8 shadow-[0_35px_60px_-20px_rgba(15,23,42,0.15)]"
             variants={rightColumn}
           >
-            <motion.p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500" variants={fadeItem}>
+            <motion.p className="text-xl font-bold text-slate-900" variants={fadeItem}>
               Ce qui nous distingue
             </motion.p>
             <motion.ul className="space-y-4 text-sm text-slate-600" variants={staggerContainer}>
@@ -277,7 +278,7 @@ export default function About() {
 
       {/* Valeurs Section */}
       <motion.section 
-        className="bg-white py-24"
+        className="bg-white py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -288,15 +289,12 @@ export default function About() {
             className="space-y-4 text-center"
             variants={fadeItem}
           >
-            <motion.span 
-              className="inline-flex items-center justify-center rounded-full bg-slate-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-slate-500"
-              variants={fadeItem}
-            >
+            <motion.h2 className="text-4xl font-bold text-slate-900 sm:text-5xl" variants={fadeItem}>
               Nos valeurs
-            </motion.span>
-            <motion.h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl" variants={fadeItem}>
-              Les piliers de notre engagement quotidien
             </motion.h2>
+            <motion.p className="text-xl font-semibold text-slate-700 sm:text-2xl" variants={fadeItem}>
+              Les piliers de notre engagement quotidien
+            </motion.p>
             <motion.p className="text-base leading-7 text-slate-600" variants={fadeItem}>
               Intégrité, excellence, innovation et satisfaction client guident chacune de nos décisions.
             </motion.p>
@@ -364,9 +362,10 @@ export default function About() {
           </motion.div>
         </div>
       </motion.section>
- {/* Team Section */}
+
+      {/* Team Section */}
       <motion.section 
-        className="bg-white py-24"
+        className="bg-white py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -377,15 +376,12 @@ export default function About() {
             className="space-y-4 text-center"
             variants={fadeItem}
           >
-            <motion.span 
-              className="inline-flex items-center justify-center rounded-full bg-slate-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-slate-500"
-              variants={fadeItem}
-            >
+            <motion.h2 className="text-4xl font-bold text-slate-900 sm:text-5xl" variants={fadeItem}>
               Notre équipe
-            </motion.span>
-            <motion.h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl" variants={fadeItem}>
-              Des experts passionnés à votre service
             </motion.h2>
+            <motion.p className="text-xl font-semibold text-slate-700 sm:text-2xl" variants={fadeItem}>
+              Des experts passionnés à votre service
+            </motion.p>
             <motion.p className="text-base leading-7 text-slate-600" variants={fadeItem}>
               Nous sommes immensément fiers de notre cohorte d'experts passionnés, dont l'engagement envers la réussite 
               de nos clients demeure inflexible.
@@ -432,7 +428,7 @@ export default function About() {
 
       {/* Timeline Section */}
       <motion.section 
-        className="bg-white py-24"
+        className="bg-white py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -443,15 +439,12 @@ export default function About() {
             className="space-y-4 text-center"
             variants={fadeItem}
           >
-            <motion.span 
-              className="inline-flex items-center justify-center rounded-full bg-black/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-black/80"
-              variants={fadeItem}
-            >
+            <motion.h2 className="text-4xl font-bold text-black sm:text-5xl" variants={fadeItem}>
               Notre parcours
-            </motion.span>
-            <motion.h2 className="text-3xl font-semibold text-black sm:text-4xl" variants={fadeItem}>
-              15 ans d'excellence au service de la cybersécurité
             </motion.h2>
+            <motion.p className="text-xl font-semibold text-black/80 sm:text-2xl" variants={fadeItem}>
+              15 ans d'excellence au service de la cybersécurité
+            </motion.p>
             <motion.p className="text-base leading-7 text-black/70" variants={fadeItem}>
               Découvrez les moments clés qui ont façonné Innovatech Consulting et notre expertise
             </motion.p>
@@ -484,7 +477,7 @@ export default function About() {
                   </motion.div>
 
                   <div className={`hidden lg:block ${idx % 2 === 0 ? 'lg:order-2' : ''}`} />
-                  <div className="absolute left-1/2 top-0 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white-900 bg-black lg:block" />
+                  <div className="absolute left-1/2 top-0 hidden h-4 w-4 -translate-x-1/2 rounded-full border-4 border-white bg-black lg:block" />
                 </div>
               ))}
             </div>
@@ -494,7 +487,7 @@ export default function About() {
 
       {/* Projects Section */}
       <motion.section 
-        className="bg-white py-24"
+        className="bg-white py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -505,15 +498,12 @@ export default function About() {
             className="space-y-4 text-center"
             variants={fadeItem}
           >
-            <motion.span 
-              className="inline-flex items-center justify-center rounded-full bg-slate-100 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-slate-500"
-              variants={fadeItem}
-            >
+            <motion.h2 className="text-4xl font-bold text-slate-900 sm:text-5xl" variants={fadeItem}>
               Projets innovants
-            </motion.span>
-            <motion.h2 className="text-3xl font-semibold text-slate-900 sm:text-4xl" variants={fadeItem}>
-              Nos solutions avant-gardistes
             </motion.h2>
+            <motion.p className="text-xl font-semibold text-slate-700 sm:text-2xl" variants={fadeItem}>
+              Nos solutions avant-gardistes
+            </motion.p>
             <motion.p className="text-base leading-7 text-slate-600" variants={fadeItem}>
               Découvrez DigiCard, notre solution de cartes de visite digitales, et notre offre MSSP pour une cybersécurité proactive
             </motion.p>
@@ -523,7 +513,7 @@ export default function About() {
             className="mt-16 grid gap-6 md:grid-cols-2"
             variants={staggerContainer}
           >
-            {projets.map((projet, index) => (
+            {projets.map((projet) => (
               <motion.div
                 key={projet.name}
                 className="group overflow-hidden rounded-[26px] border border-slate-100 bg-slate-50/70 shadow-[0_25px_45px_-20px_rgba(15,23,42,0.18)] transition hover:-translate-y-1"
@@ -540,7 +530,7 @@ export default function About() {
                   <h3 className="mb-3 text-xl font-semibold text-slate-900">{projet.name}</h3>
                   <p className="mb-6 text-sm leading-6 text-slate-600">{projet.desc}</p>
                   <a 
-                    href="#contact" 
+                    href="/contact" 
                     className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
                   >
                     {projet.cta}
@@ -555,10 +545,9 @@ export default function About() {
         </div>
       </motion.section>
 
-     
       {/* CTA Final */}
       <motion.section 
-        className="bg-white py-24"
+        className="bg-white py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}

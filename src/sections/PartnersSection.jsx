@@ -29,7 +29,7 @@ const logoVariants = {
 export function PartnersSection() {
   return (
     <motion.section
-      className="bg-white py-24"
+      className="bg-white py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.25 }}
@@ -50,7 +50,7 @@ export function PartnersSection() {
         </motion.div>
 
         <motion.div
-          className="logos-grid mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 lg:grid-cols-4 lg:gap-10"
+          className="logos-grid mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 sm:gap-8 lg:grid-cols-4 lg:gap-8"
           variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
         >
           {partnerLogos.map((partner) => (

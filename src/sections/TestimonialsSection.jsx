@@ -87,11 +87,11 @@ export function TestimonialsSection({ withHero = false }) {
   const currentTestimonial = testimonials[activeTestimonial]
 
   return (
-    <section className={withHero ? 'bg-slate-900 py-24 text-white' : 'bg-white py-24'}>
+    <section className={withHero ? 'bg-slate-900 py-16 text-white' : 'bg-white py-16'}>
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12">
           <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold mb-8 ${
             withHero 
               ? 'bg-blue-500/20 border border-blue-400/30 text-cyan-300'

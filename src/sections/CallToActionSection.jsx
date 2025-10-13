@@ -2,7 +2,7 @@ import { ctaHighlights, contactInfo } from '../data/siteContent'
 
 export function CallToActionSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-24 text-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 py-16 text-white">
       <div className="absolute inset-0 opacity-40">
         <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
         <div className="absolute bottom-0 left-16 h-64 w-64 rounded-full bg-blue-500/20 blur-3xl" />
@@ -22,7 +22,7 @@ export function CallToActionSection() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {ctaHighlights.map((item) => (
             <div
               key={item.title}
@@ -37,7 +37,7 @@ export function CallToActionSection() {
           ))}
         </div>
 
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 lg:grid-cols-3">
           <div className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
             <h3 className="text-lg font-semibold">Adresse</h3>
             <p className="mt-4 text-base text-slate-200">{contactInfo.address}</p>

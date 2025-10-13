@@ -12,44 +12,44 @@ const sectionReveal = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.9,
+      duration: 1,
       ease: [0.16, 1, 0.3, 1],
     },
   },
 }
 
 const heroLeft = {
-  hidden: { opacity: 0, x: -90 },
+  hidden: { opacity: 0, x: -60 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
       duration: 1.2,
       ease: [0.19, 1, 0.22, 1],
-      staggerChildren: 0.16,
+      staggerChildren: 0.15,
     },
   },
 }
 
 const heroItem = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.95,
+      duration: 0.8,
       ease: [0.19, 1, 0.22, 1],
     },
   },
 }
 
 const heroRight = {
-  hidden: { opacity: 0, x: 90 },
+  hidden: { opacity: 0, x: 60 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.35,
+      duration: 1.2,
       ease: [0.19, 1, 0.22, 1],
     },
   },
@@ -63,7 +63,7 @@ export function HeroSection() {
       animate="visible"
       variants={sectionReveal}
     >
-      <div className="mx-auto flex w-full max-w-6xl min-h-[80vh] flex-col-reverse gap-12 px-4 pb-20 pt-12 sm:px-6 lg:flex-row lg:items-center lg:gap-20 lg:px-8">
+      <div className="mx-auto flex w-full max-w-6xl min-h-[70vh] flex-col-reverse gap-12 px-4 pb-12 pt-8 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8">
         <motion.div className="flex-1 space-y-8" variants={heroLeft}>
           {/* <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-5 py-2 text-xs font-medium tracking-[0.2em] text-slate-500"
@@ -123,7 +123,7 @@ export function HeroSection() {
                 visible: {
                   opacity: 1,
                   scale: 1,
-                  transition: { duration: 1.1, ease: [0.19, 1, 0.22, 1] },
+                  transition: { duration: 1.2, ease: [0.19, 1, 0.22, 1] },
                 },
               }}
             />
@@ -133,7 +133,7 @@ export function HeroSection() {
 
       <div className="border-t border-slate-100 bg-white">
         <motion.dl
-          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4 sm:px-6 lg:px-8"
+          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-4 py-8 sm:grid-cols-2 lg:grid-cols-4 sm:px-6 lg:px-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}

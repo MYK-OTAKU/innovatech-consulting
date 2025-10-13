@@ -5,43 +5,43 @@ const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.6, ease: 'easeOut' },
+    transition: { duration: 0.8, ease: 'easeOut' },
   },
 }
 
 const leftColumn = {
-  hidden: { opacity: 0, x: -80 },
+  hidden: { opacity: 0, x: -50 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
       duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
-      staggerChildren: 0.16,
+      staggerChildren: 0.12,
     },
   },
 }
 
 const rightColumn = {
-  hidden: { opacity: 0, x: 80 },
+  hidden: { opacity: 0, x: 50 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1,
+      duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
-      staggerChildren: 0.16,
+      staggerChildren: 0.12,
     },
   },
 }
 
 const fadeItem = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.65,
+      duration: 0.6,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -76,13 +76,13 @@ export function ValueSection() {
   return (
     <motion.section
       id="valeur"
-      className="bg-white py-24"
+      className="bg-white py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.25 }}
       variants={sectionVariants}
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-16 px-4 sm:px-6 lg:flex-row lg:items-start lg:gap-20 lg:px-8">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-4 sm:px-6 lg:flex-row lg:items-start lg:gap-16 lg:px-8">
         <motion.div className="flex-1 space-y-6" variants={leftColumn}>
           <motion.h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl" variants={fadeItem}>
             Notre approche

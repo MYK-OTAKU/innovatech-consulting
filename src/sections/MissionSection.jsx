@@ -2,8 +2,8 @@ import { missionHighlights, projects } from '../data/siteContent'
 
 export function MissionSection() {
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto grid w-full max-w-6xl gap-16 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:px-8">
+    <section className="bg-white py-16">
+      <div className="mx-auto grid w-full max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[1.2fr_1fr] lg:px-8">
         <div className="space-y-6">
           <h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
             Notre mission

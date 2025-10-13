@@ -2,25 +2,25 @@ import { motion } from 'framer-motion'
 import { services } from '../data/siteContent'
 
 const sectionVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1.05,
-      ease: [0.19, 1, 0.22, 1],
-      staggerChildren: 0.18,
-    },
-  },
-}
-
-const cardVariants = {
   hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.95,
+      duration: 0.8,
+      ease: [0.19, 1, 0.22, 1],
+      staggerChildren: 0.15,
+    },
+  },
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
       ease: [0.19, 1, 0.22, 1],
     },
   },
@@ -30,7 +30,7 @@ export function ServicesSection() {
   return (
     <motion.section
       id="services"
-      className="bg-white py-24"
+      className="bg-white py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -50,8 +50,8 @@ export function ServicesSection() {
         </motion.div>
 
         <motion.div
-          className="mt-16 grid gap-10 lg:grid-cols-3"
-          variants={{ visible: { transition: { staggerChildren: 0.18 } } }}
+          className="mt-12 grid gap-8 lg:grid-cols-3"
+          variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
         >
           {services.map((service) => (
             <motion.article
@@ -59,7 +59,7 @@ export function ServicesSection() {
               className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
               variants={cardVariants}
               whileHover={{ y: -6 }}
-              transition={{ type: 'spring', stiffness: 200, damping: 18 }}
+              transition={{ type: 'spring', stiffness: 150, damping: 20 }}
             >
               <motion.div className="h-52 overflow-hidden" layout>
                 <motion.img

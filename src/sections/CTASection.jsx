@@ -2,8 +2,8 @@ import { ctaHighlights } from '../data/siteContent'
 
 export function CTASection() {
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-12 px-4 text-center sm:px-6 lg:px-8">
+    <section className="bg-slate-50 py-16">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-10 px-4 text-center sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-slate-900 sm:text-5xl">
           Prêt à renforcer votre posture cyber ?
         </h2>

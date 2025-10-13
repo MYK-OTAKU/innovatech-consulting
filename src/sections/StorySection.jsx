@@ -4,42 +4,42 @@ const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.9, ease: [0.19, 1, 0.22, 1] },
+    transition: { duration: 0.8, ease: [0.19, 1, 0.22, 1] },
   },
 }
 
 const leftColumn = {
-  hidden: { opacity: 0, x: -90 },
+  hidden: { opacity: 0, x: -60 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.2,
+      duration: 1,
       ease: [0.19, 1, 0.22, 1],
-      staggerChildren: 0.2,
+      staggerChildren: 0.15,
     },
   },
 }
 
 const rightColumn = {
-  hidden: { opacity: 0, x: 90 },
+  hidden: { opacity: 0, x: 60 },
   visible: {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 1.3,
+      duration: 1,
       ease: [0.19, 1, 0.22, 1],
     },
   },
 }
 
 const fadeItem = {
-  hidden: { opacity: 0, y: 22 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.95,
+      duration: 0.6,
       ease: [0.19, 1, 0.22, 1],
     },
   },
@@ -49,13 +49,13 @@ export function StorySection() {
   return (
     <motion.section
       id="notre-histoire"
-      className="bg-white py-24"
+      className="bg-white py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
       variants={sectionVariants}
     >
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-4 sm:px-6 lg:grid-cols-2 lg:gap-20 lg:px-8">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8">
         <motion.div className="space-y-8" variants={leftColumn}>
           <motion.div className="space-y-3" variants={fadeItem}>
             <motion.h2 className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl" variants={fadeItem}>
@@ -112,7 +112,7 @@ export function StorySection() {
             alt="Équipe Innovatech en réflexion"
             className="h-full w-full object-cover"
             loading="lazy"
-            variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { duration: 1.1, ease: [0.19, 1, 0.22, 1] } } }}
+            variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { duration: 1.8, ease: [0.19, 1, 0.22, 1] } } }}
           />
           <motion.div
             className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/90 p-6 shadow-lg backdrop-blur"
