@@ -1,0 +1,168 @@
+import { motion } from 'framer-motion'
+import { stats } from '../data/siteContent'
+
+const highlights = [
+  'SOC hybride basé au Maroc avec analystes certifiés',
+  'Audit de posture livré en moins de 15 jours',
+  'Tableaux de bord clairs pour piloter vos risques',
+]
+
+const sectionReveal = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.9,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+}
+
+const heroLeft = {
+  hidden: { opacity: 0, x: -90 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.2,
+      ease: [0.19, 1, 0.22, 1],
+      staggerChildren: 0.16,
+    },
+  },
+}
+
+const heroItem = {
+  hidden: { opacity: 0, y: 24 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.95,
+      ease: [0.19, 1, 0.22, 1],
+    },
+  },
+}
+
+const heroRight = {
+  hidden: { opacity: 0, x: 90 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 1.35,
+      ease: [0.19, 1, 0.22, 1],
+    },
+  },
+}
+
+export function HeroSection() {
+  return (
+    <motion.section
+      className="bg-white"
+      initial="hidden"
+      animate="visible"
+      variants={sectionReveal}
+    >
+      <div className="mx-auto flex w-full max-w-6xl min-h-[80vh] flex-col-reverse gap-12 px-4 pb-20 pt-12 sm:px-6 lg:flex-row lg:items-center lg:gap-20 lg:px-8">
+        <motion.div className="flex-1 space-y-8" variants={heroLeft}>
+          {/* <motion.span
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-5 py-2 text-xs font-medium tracking-[0.2em] text-slate-500"
+            variants={heroItem}
+          >
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+            La cybersécurité N°1 au Maroc · Solutions sur mesure
+          </motion.span> */}
+          <motion.div className="space-y-5" variants={heroItem}>
+            <motion.h1
+              className="text-4xl font-black tracking-tight text-slate-900 sm:text-6xl sm:leading-[1.05]"
+              variants={heroItem}
+            >
+              Sécurisez l&apos;avenir de votre entreprise
+            </motion.h1>
+            <motion.p className="max-w-xl text-base leading-7 text-slate-600" variants={heroItem}>
+              Offrez-vous des services de cybersécurité personnalisés pour protéger vos systèmes d&apos;information et transformer les menaces en opportunités.
+            </motion.p>
+          </motion.div>
+          <motion.ul className="space-y-3 text-sm text-slate-600" variants={heroItem}>
+            {highlights.map((item) => (
+              <motion.li key={item} className="flex items-start gap-3" variants={heroItem}>
+                <span className="mt-0.5 inline-flex h-5 w-5 flex-none items-center justify-center rounded-full bg-blue-100 text-blue-600">
+                  ✓
+                </span>
+                <span>{item}</span>
+              </motion.li>
+            ))}
+          </motion.ul>
+          <motion.div className="flex flex-wrap gap-3" variants={heroItem}>
+            <motion.a
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-900/10 transition hover:-translate-y-0.5 hover:bg-slate-800"
+              variants={heroItem}
+            >
+              Contactez-nous
+            </motion.a>
+            <motion.a
+              href="#notre-histoire"
+              className="inline-flex items-center justify-center rounded-full border border-slate-900 px-7 py-3 text-sm font-semibold text-slate-900 transition hover:-translate-y-0.5 hover:bg-slate-900 hover:text-white"
+              variants={heroItem}
+            >
+              Notre histoire
+            </motion.a>
+          </motion.div>
+        </motion.div>
+
+        <motion.div className="flex-1" variants={heroRight}>
+          <motion.div className="overflow-hidden rounded-3xl border border-slate-200 shadow-xl shadow-slate-200/60" variants={heroRight}>
+            <motion.img
+              src="/secure.jpeg"
+              alt="Illustration cybersécurité Innovatech"
+              className="h-[450px] w-full object-cover"
+              loading="lazy"
+              variants={{
+                hidden: { opacity: 0, scale: 0.94 },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  transition: { duration: 1.1, ease: [0.19, 1, 0.22, 1] },
+                },
+              }}
+            />
+          </motion.div>
+        </motion.div>
+      </div>
+
+      <div className="border-t border-slate-100 bg-white">
+        <motion.dl
+          className="mx-auto grid w-full max-w-6xl grid-cols-1 gap-6 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4 sm:px-6 lg:px-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.12,
+              },
+            },
+          }}
+        >
+          {stats.map((item) => (
+            <motion.div
+              key={item.label}
+              className="rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
+              variants={heroItem}
+            >
+              <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
+                {item.label}
+              </dt>
+              <dd className="mt-3 text-3xl font-bold text-slate-900">{item.value}</dd>
+              {item.description ? (
+                <p className="mt-2 text-sm text-slate-600">{item.description}</p>
+              ) : null}
+            </motion.div>
+          ))}
+        </motion.dl>
+      </div>
+    </motion.section>
+  )
+}
