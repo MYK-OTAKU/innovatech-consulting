@@ -30,7 +30,7 @@ export function ServicesSection() {
   return (
     <motion.section
       id="services"
-      className="bg-white py-16"
+      className="py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -56,7 +56,7 @@ export function ServicesSection() {
           {services.map((service) => (
             <motion.article
               key={service.title}
-              className="flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm"
+              className="flex h-full flex-col overflow-hidden rounded-[26px] border border-slate-100 bg-slate-50/70 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
               variants={cardVariants}
               whileHover={{ y: -6 }}
               transition={{ type: 'spring', stiffness: 150, damping: 20 }}

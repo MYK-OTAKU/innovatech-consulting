@@ -141,7 +141,7 @@ const staggerContainer = {
 
 export default function About() {
   return (
-    <div className="bg-white">
+    <div className="bg-gradient-to-br from-white via-[#C2C4C6]/30 to-white">
       {/* Hero Section */}
       <motion.section
         className="relative overflow-hidden text-white"
@@ -161,8 +161,8 @@ export default function About() {
         </div>
 
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col gap-10 px-4 py-28 sm:px-6 lg:px-8">
-          <motion.div className="max-w-3xl space-y-4" variants={leftColumn}>
-            <motion.h1 className="text-5xl font-bold leading-tight sm:text-6xl lg:text-7xl" variants={fadeItem}>
+          <motion.div className="max-w-4xl space-y-6" variants={leftColumn}>
+            <motion.h1 className="text-4xl font-bold leading-tight sm:text-5xl lg:text-6xl" variants={fadeItem}>
               À propos de<br />Innovatech Consulting
             </motion.h1>
             <motion.p className="text-lg leading-8 text-white/90 sm:text-xl lg:text-2xl" variants={fadeItem}>
@@ -246,26 +246,26 @@ export default function About() {
           </motion.div>
 
           <motion.div
-            className="grid gap-5 rounded-[28px] border border-slate-200 bg-white p-8 shadow-[0_35px_60px_-20px_rgba(15,23,42,0.15)]"
+            className="grid gap-5 rounded-[26px] border border-slate-100 bg-slate-50/70 p-8 transition hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
             variants={rightColumn}
           >
             <motion.p className="text-xl font-bold text-slate-900" variants={fadeItem}>
               Ce qui nous distingue
             </motion.p>
             <motion.ul className="space-y-4 text-sm text-slate-600" variants={staggerContainer}>
-              <motion.li className="rounded-3xl border border-slate-100 bg-slate-50/60 p-4" variants={cardVariants}>
+              <motion.li className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-4 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]" variants={cardVariants}>
                 <p className="text-base font-semibold text-slate-900">🧭 Mission</p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   Être l'allié stratégique des organisations ambitieuses dans leur transformation numérique sécurisée.
                 </p>
               </motion.li>
-              <motion.li className="rounded-3xl border border-slate-100 bg-slate-50/60 p-4" variants={cardVariants}>
+              <motion.li className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-4 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]" variants={cardVariants}>
                 <p className="text-base font-semibold text-slate-900">🤝 Engagement</p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   Transparence, accompagnement personnalisé et amélioration continue de vos dispositifs de sécurité.
                 </p>
               </motion.li>
-              <motion.li className="rounded-3xl border border-slate-100 bg-slate-50/60 p-4" variants={cardVariants}>
+              <motion.li className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-4 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]" variants={cardVariants}>
                 <p className="text-base font-semibold text-slate-900">🚀 Innovation</p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   Veille technologique permanente et adoption des meilleures pratiques du marché.
@@ -278,7 +278,7 @@ export default function About() {
 
       {/* Valeurs Section */}
       <motion.section 
-        className="bg-white py-8"
+        className=" py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -365,7 +365,7 @@ export default function About() {
 
       {/* Team Section */}
       <motion.section 
-        className="bg-white py-8"
+        className="py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -396,7 +396,7 @@ export default function About() {
               {team.map((member) => (
                 <motion.div
                   key={member.name}
-                  className="flex flex-col items-center text-center rounded-[28px] border border-slate-200 bg-white p-8 shadow-[0_30px_60px_-25px_rgba(15,23,42,0.25)] transition hover:-translate-y-1"
+                  className="flex flex-col items-center text-center rounded-[26px] border border-slate-100 bg-slate-50/70 p-8 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
                   variants={cardVariants}
                 >
                   <img 
@@ -428,7 +428,7 @@ export default function About() {
 
       {/* Timeline Section */}
       <motion.section 
-        className="bg-white py-16"
+        className=" py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -487,7 +487,7 @@ export default function About() {
 
       {/* Projects Section */}
       <motion.section 
-        className="bg-white py-8"
+        className=" py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -547,7 +547,7 @@ export default function About() {
 
       {/* CTA Final */}
       <motion.section 
-        className="bg-white py-8"
+        className=" py-8"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -555,7 +555,7 @@ export default function About() {
       >
         <div className="mx-auto w-full max-w-4xl px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="rounded-3xl border border-slate-200 bg-white p-10 text-center shadow-xl"
+            className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-10 text-center transition hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
             variants={fadeItem}
           >
             <h2 className="mb-4 text-3xl font-bold text-slate-900">

@@ -74,7 +74,7 @@ const staggerContainer = {
 
 export function Services() {
   return (
-    <div className="bg-slate-50">
+    <div className="bg-gradient-to-br from-white via-[#C2C4C6]/30 to-white">
       {/* Hero Section */}
       <motion.div 
         className="relative overflow-hidden bg-gradient-to-br from-blue-950 via-slate-900 to-slate-800 text-white"
@@ -109,7 +109,7 @@ export function Services() {
 
       {/* Méthodologie Section - AMÉLIORÉE */}
       <motion.section 
-        className="bg-white py-16"
+        className=" py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -140,7 +140,7 @@ export function Services() {
               {serviceProcess.map((step, index) => (
                 <motion.div
                   key={step.title}
-                  className="group relative flex gap-6 rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_15px_35px_-15px_rgba(15,23,42,0.1)] transition hover:-translate-y-1 hover:shadow-[0_25px_50px_-15px_rgba(15,23,42,0.15)]"
+                  className="group relative flex gap-6 rounded-3xl border border-slate-200 p-6 shadow-[0_15px_35px_-15px_rgba(15,23,42,0.1)] transition hover:-translate-y-1 hover:shadow-[0_25px_50px_-15px_rgba(15,23,42,0.15)]"
                   variants={fadeIn}
                 >
                   <div className="flex h-14 w-14 flex-none items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500 to-primary-600 text-2xl shadow-lg">
@@ -170,7 +170,7 @@ export function Services() {
               {differentiators.map(({ title, description }) => (
                 <motion.div
                   key={title}
-                  className="flex flex-col justify-between rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-6 shadow-[0_15px_35px_-15px_rgba(15,23,42,0.08)] transition hover:-translate-y-1"
+                  className="flex flex-col justify-between rounded-3xl border border-slate-200  p-6 shadow-[0_15px_35px_-15px_rgba(15,23,42,0.08)] transition hover:-translate-y-1"
                   variants={fadeIn}
                 >
                   <div>
@@ -187,7 +187,7 @@ export function Services() {
 
       {/* Avantages Section - NOUVELLE */}
       <motion.section 
-        className="bg-slate-50 py-16"
+        className=" py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -213,7 +213,7 @@ export function Services() {
             {advantages.map((advantage) => (
               <motion.div
                 key={advantage.title}
-                className="group rounded-3xl border border-slate-200 bg-white p-8 text-center shadow-[0_20px_40px_-20px_rgba(15,23,42,0.12)] transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-20px_rgba(15,23,42,0.18)]"
+                className="group rounded-3xl border border-slate-200 p-8 text-center shadow-[0_20px_40px_-20px_rgba(15,23,42,0.12)] transition hover:-translate-y-2 hover:shadow-[0_30px_60px_-20px_rgba(15,23,42,0.18)]"
                 variants={fadeIn}
               >
                 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-500/10 to-primary-600/10 text-3xl transition group-hover:scale-110">
@@ -233,7 +233,7 @@ export function Services() {
 
       {/* CTA Section - NOUVELLE */}
       <motion.section 
-        className="bg-white py-16"
+        className=" py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
@@ -253,7 +253,7 @@ export function Services() {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a 
                 href="/contact" 
-                className="inline-flex items-center justify-center rounded-full bg-white px-8 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-100"
+                className="inline-flex items-center justify-center bg-white rounded-full px-8 py-3 text-sm font-semibold text-slate-900 shadow-lg transition hover:-translate-y-0.5 hover:bg-slate-100"
               >
                 Demander un audit gratuit
               </a>

@@ -29,7 +29,7 @@ const logoVariants = {
 export function PartnersSection() {
   return (
     <motion.section
-      className="bg-white py-16"
+      className="py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.25 }}
@@ -56,7 +56,7 @@ export function PartnersSection() {
           {partnerLogos.map((partner) => (
             <motion.div
               key={partner.name}
-              className="logo-item flex min-h-[120px] items-center justify-center rounded-2xl bg-white p-6 shadow-[0_4px_20px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:shadow-[0_12px_35px_rgba(15,23,42,0.12)]"
+              className="logo-item flex min-h-[120px] items-center justify-center rounded-[26px] border border-slate-100 bg-slate-50/70 p-6 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
               variants={logoVariants}
             >
               {partner.logo ? (

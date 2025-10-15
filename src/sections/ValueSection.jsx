@@ -76,7 +76,7 @@ export function ValueSection() {
   return (
     <motion.section
       id="valeur"
-      className="bg-white py-16"
+      className="py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.25 }}
@@ -106,11 +106,11 @@ export function ValueSection() {
             {approachSteps.map((step, index) => (
               <motion.li
                 key={step.title}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+                className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-5 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
                 variants={fadeItem}
               >
                 <div className="flex items-start gap-4">
-                  <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-blue-600 text-sm font-semibold text-white">
+                  <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-slate-700 text-sm font-semibold text-white">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
@@ -149,14 +149,14 @@ export function ValueSection() {
             }}
           >
             {differentiators.map((diff) => (
-              <motion.div key={diff.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" variants={fadeItem}>
-                <h4 className="text-base font-semibold text-slate-900">{diff.title}</h4>
+              <motion.div key={diff.title} className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-6 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]" variants={fadeItem}>
+                <h4 className="text-base font-semibold text-slate-800">{diff.title}</h4>
                 <p className="mt-2 text-sm text-slate-600">{diff.description}</p>
               </motion.div>
             ))}
           </motion.div>
 
-          <motion.div className="rounded-2xl border border-slate-200 bg-white p-6" variants={fadeItem}>
+          <motion.div className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-6 transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]" variants={fadeItem}>
             <h3 className="text-sm font-semibold uppercase tracking-[0.3em] text-blue-600">
               Engagement qualité
             </h3>

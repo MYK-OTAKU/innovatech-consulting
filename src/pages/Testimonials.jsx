@@ -120,9 +120,9 @@ export function Testimonials() {
     : testimonials.filter(t => t.category === activeFilter)
 
   return (
-    <div className="bg-white">
+    <div className="bg-gradient-to-br from-white via-[#C2C4C6]/30 to-white">
       {/* Hero Section */}
-      <section className="bg-white py-20">
+      <section className="py-20">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="text-center"
@@ -171,7 +171,7 @@ export function Testimonials() {
       </section>
 
       {/* Filters */}
-      <section className="border-y border-slate-200 bg-white">
+      <section className="border-y border-slate-200">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 overflow-x-auto py-5">
             {filters.map((filter) => (
@@ -188,7 +188,7 @@ export function Testimonials() {
               </button>
             ))}
             <select 
-              className="ml-auto rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700"
+              className="ml-auto rounded-lg border border-slate-300px-4 py-2 text-sm font-medium text-slate-700"
               defaultValue="recent"
             >
               <option value="recent">Plus récents</option>
@@ -200,7 +200,7 @@ export function Testimonials() {
       </section>
 
       {/* Testimonials Grid */}
-      <section className="bg-white py-20">
+      <section className=" py-20">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <motion.div 
             className="grid gap-6 md:grid-cols-2"
@@ -212,7 +212,7 @@ export function Testimonials() {
             {filteredTestimonials.map((testimonial) => (
               <motion.div
                 key={testimonial.id}
-                className="group rounded-[26px] border border-slate-200 bg-white p-8 shadow-[0_8px_30px_-8px_rgba(15,23,42,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-12px_rgba(15,23,42,0.25)]"
+                className="group rounded-[26px] border border-slate-200  p-8 shadow-[0_8px_30px_-8px_rgba(15,23,42,0.12)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_50px_-12px_rgba(15,23,42,0.25)]"
                 variants={cardVariants}
               >
                 {/* Header */}
@@ -262,7 +262,7 @@ export function Testimonials() {
       </section>
 
       {/* Featured Testimonial */}
-      <section className="bg-white py-20">
+      <section className=" py-20">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8">
           <motion.div
             className="text-center"
@@ -278,7 +278,7 @@ export function Testimonials() {
               « Innovatech, c'est une équipe engagée, transparente et disponible »
             </p>
 
-            <div className="mt-12 rounded-[28px] border border-slate-200 bg-white p-10 text-left shadow-[0_30px_60px_-25px_rgba(15,23,42,0.25)] sm:p-12">
+            <div className="mt-12 rounded-[28px] border border-slate-200  p-10 text-left shadow-[0_30px_60px_-25px_rgba(15,23,42,0.25)] sm:p-12">
               <div className="mb-8 flex justify-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <svg key={i} className="h-7 w-7 fill-yellow-400" viewBox="0 0 20 20">
@@ -304,7 +304,7 @@ export function Testimonials() {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-white py-20">
+      <section className=" py-20">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-slate-900 sm:text-4xl">Des résultats concrets</h2>
@@ -322,7 +322,7 @@ export function Testimonials() {
             ].map((stat, index) => (
               <motion.div
                 key={index}
-                className="rounded-[26px] border border-slate-200 bg-white p-8 text-center shadow-sm"
+                className="rounded-[26px] border border-slate-200  p-8 text-center shadow-sm"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}

@@ -19,13 +19,13 @@ export function Header() {
   const closeMenu = () => setIsOpen(false)
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/85 backdrop-blur overflow-x-hidden">
       <div className="mx-auto flex h-20 w-full max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="group flex items-center gap-3 text-lg font-semibold text-slate-900" onClick={closeMenu}>
+        <Link to="/" className="group flex items-center gap-2 text-lg font-semibold text-slate-900 flex-shrink-0" onClick={closeMenu}>
            <img
               src="logo-transparent-innovatech.avif"
               alt="Illustration cybersécurité Innovatech"
-              className="h-16 w-26 object-cover"
+              className="h-12 w-auto object-contain sm:h-16"
               loading="lazy"
             />
         </Link>
@@ -82,7 +82,7 @@ export function Header() {
       </div>
 
       {isOpen && (
-        <div className="border-t border-slate-200 bg-white lg:hidden">
+        <div className="border-t border-slate-200 bg-white lg:hidden overflow-x-hidden">
           <nav className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-4 py-4 text-sm font-medium text-slate-600 sm:px-6">
             {NAV_LINKS.map((link) => (
               <NavLink
@@ -99,7 +99,7 @@ export function Header() {
             <Link
               to="/contact"
               onClick={closeMenu}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-white"
+              className="mt-2 inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
             >
               Contactez-nous
             </Link>

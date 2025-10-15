@@ -7,7 +7,7 @@ import { CallToActionSection } from '../sections/CallToActionSection'
 
 export function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-white via-[#C2C4C6]/30 to-white">
       <HeroSection />
       <StorySection />
       <ServicesSection />

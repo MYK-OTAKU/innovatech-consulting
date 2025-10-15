@@ -105,7 +105,7 @@ const faqs = [
 
 export function Contact() {
   return (
-    <div className="bg-white">
+    <div className="bg-gradient-to-br from-white via-[#C2C4C6]/30 to-white">
       <ContactHero />
 
       <section className="py-16">
@@ -113,7 +113,7 @@ export function Contact() {
           <div className="space-y-8">
             {/* Contact Channels Section */}
             <motion.div
-              className="rounded-[28px] border border-slate-200 bg-white p-10 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)]"
+              className="rounded-[28px] border border-slate-200  p-10 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)]"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
@@ -137,7 +137,7 @@ export function Contact() {
                 {contactChannels.map((channel) => (
                   <motion.div
                     key={channel.title}
-                    className="group rounded-[22px] border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_-10px_rgba(15,23,42,0.2)]"
+                    className="group rounded-[22px] border border-slate-200  p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_-10px_rgba(15,23,42,0.2)]"
                     variants={cardVariants}
                   >
                     <span className="text-3xl">{channel.icon}</span>
@@ -157,7 +157,7 @@ export function Contact() {
 
               {/* Bureau & Horaires */}
               <div className="mt-10 grid gap-6 sm:grid-cols-2">
-                <div className="rounded-[22px] border border-slate-200 bg-slate-50 p-6">
+                <div className="rounded-[22px] border border-slate-200 p-6">
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">📍</span>
                     <p className="text-sm font-bold uppercase tracking-wider text-slate-700">
@@ -215,7 +215,7 @@ export function Contact() {
               variants={fadeIn}
             >
               {/* Header */}
-              <div className="rounded-[28px] border border-slate-200 bg-white p-10 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)]">
+              <div className="rounded-[28px] border border-slate-200  p-10 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)]">
                 <h2 className="text-4xl font-bold text-slate-900 sm:text-5xl">
                   Questions fréquentes
                 </h2>
@@ -238,7 +238,7 @@ export function Contact() {
                 {faqs.map((faq, index) => (
                   <motion.details
                     key={faq.question}
-                    className="group rounded-[24px] border border-slate-200 bg-white p-6 shadow-[0_8px_30px_-8px_rgba(15,23,42,0.12)] transition-all hover:shadow-[0_12px_40px_-8px_rgba(15,23,42,0.18)]"
+                    className="group rounded-[24px] border border-slate-200  p-6 shadow-[0_8px_30px_-8px_rgba(15,23,42,0.12)] transition-all hover:shadow-[0_12px_40px_-8px_rgba(15,23,42,0.18)]"
                     variants={cardVariants}
                   >
                     <summary className="flex cursor-pointer items-start justify-between gap-4 text-left">
@@ -259,7 +259,7 @@ export function Contact() {
 
               {/* Localisation avec Google Maps */}
               <motion.div
-                className="rounded-[28px] border border-slate-200 bg-white shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)] overflow-hidden"
+                className="rounded-[28px] border border-slate-200 shadow-[0_20px_60px_-15px_rgba(15,23,42,0.2)] overflow-hidden"
                 variants={fadeIn}
               >
                 <div className="p-10 pb-8">

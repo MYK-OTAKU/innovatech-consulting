@@ -49,7 +49,7 @@ export function StorySection() {
   return (
     <motion.section
       id="notre-histoire"
-      className="bg-white py-16"
+      className="py-16"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -104,7 +104,7 @@ export function StorySection() {
         </motion.div>
 
         <motion.aside
-          className="relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-slate-900/5 shadow-xl"
+          className="relative overflow-hidden rounded-[26px] border border-slate-100 bg-slate-50/70 shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
           variants={rightColumn}
         >
           <motion.img
@@ -115,7 +115,7 @@ export function StorySection() {
             variants={{ hidden: { opacity: 0, scale: 0.95 }, visible: { opacity: 1, scale: 1, transition: { duration: 1.8, ease: [0.19, 1, 0.22, 1] } } }}
           />
           <motion.div
-            className="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/90 p-6 shadow-lg backdrop-blur"
+            className="absolute bottom-6 left-6 right-6 rounded-[26px] border border-slate-100 bg-slate-50/95 p-6 shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)] backdrop-blur"
             variants={fadeItem}
           >
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-500">Notre promesse</p>

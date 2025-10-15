@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { stats } from '../data/siteContent'
+import LightRays from '../components/LightRays'
 
 const highlights = [
   'SOC hybride basé au Maroc avec analystes certifiés',
@@ -58,12 +59,27 @@ const heroRight = {
 export function HeroSection() {
   return (
     <motion.section
-      className="bg-white"
+      className="bg-white relative overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={sectionReveal}
     >
-      <div className="mx-auto flex w-full max-w-6xl min-h-[70vh] flex-col-reverse gap-12 px-4 pb-12 pt-8 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8">
+      {/* LightRays Background Effect */}
+      <div className="absolute inset-0 w-full min-h-screen pointer-events-none z-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="green"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+        />
+      </div>
+
+      <div className="mx-auto flex w-full max-w-6xl min-h-[70vh] flex-col-reverse gap-12 px-4 pb-24 pt-16 sm:px-6 lg:flex-row lg:items-center lg:gap-16 lg:px-8 relative z-10">
         <motion.div className="flex-1 space-y-8" variants={heroLeft}>
           {/* <motion.span
             className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-100 px-5 py-2 text-xs font-medium tracking-[0.2em] text-slate-500"
@@ -149,13 +165,13 @@ export function HeroSection() {
           {stats.map((item) => (
             <motion.div
               key={item.label}
-              className="rounded-2xl border border-slate-200 bg-white p-6 text-left shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
+              className="rounded-[26px] border border-slate-100 bg-slate-50/70 p-6 text-left transition hover:-translate-y-1 hover:shadow-[0_25px_45px_-20px_rgba(15,23,42,0.15)]"
               variants={heroItem}
             >
-              <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
+              <dt className="text-xs font-semibold uppercase tracking-[0.25em] text-slate-600">
                 {item.label}
               </dt>
-              <dd className="mt-3 text-3xl font-bold text-slate-900">{item.value}</dd>
+              <dd className="mt-3 text-3xl font-bold text-slate-800">{item.value}</dd>
               {item.description ? (
                 <p className="mt-2 text-sm text-slate-600">{item.description}</p>
               ) : null}
