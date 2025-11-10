@@ -108,7 +108,7 @@ export function AttackReport() {
   const selectedUrgency = URGENCY_LEVELS.find(level => level.value === formData.urgency)
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-white">
       {/* Hero Section */}
       <motion.section
         className="relative overflow-hidden bg-gradient-to-br from-red-600 via-red-700 to-orange-700 py-20 sm:py-24"
