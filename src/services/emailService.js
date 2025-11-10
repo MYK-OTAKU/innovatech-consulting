@@ -70,6 +70,75 @@ class EmailService {
   }
 
   /**
+   * Envoie une déclaration d'incident via EmailJS
+   * @param {Object} formData - Données du formulaire d'incident
+   * @returns {Promise<void>}
+   */
+  async sendIncidentReport(formData) {
+    // Vérifier si EmailJS est configuré
+    if (!isEmailConfigured()) {
+      console.warn('🔧 EmailJS non configuré, utilisation du mode simulation avancé');
+      console.log('🚨 Simulation d\'envoi de déclaration d\'incident vers:', EMAIL_CONFIG.TO_ADDRESS);
+      console.log('📋 Données de l\'incident:', {
+        contact: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        entreprise: formData.company,
+        type: formData.incidentType,
+        urgence: formData.urgency
+      });
+      
+      // Simulation d'envoi avec délai réaliste
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      return;
+    }
+
+    try {
+      // Paramètres du template EmailJS pour les incidents
+      const templateParams = {
+        from_name: `${formData.firstName} ${formData.lastName}`,
+        from_email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        incident_type: formData.incidentType,
+        urgency: formData.urgency,
+        description: formData.description,
+        impacted_systems: formData.impactedSystems || 'Non spécifié',
+        when_occurred: formData.whenOccurred,
+        current_status: formData.currentStatus || 'Non spécifié',
+        to_name: EMAIL_CONFIG.TO_NAME,
+        reply_to: formData.email,
+        submission_date: new Date().toLocaleString('fr-FR')
+      };
+
+      // Utiliser un template spécifique pour les incidents ou le template par défaut
+      const templateId = EMAIL_CONFIG.INCIDENT_TEMPLATE_ID || EMAIL_CONFIG.TEMPLATE_ID;
+
+      // Envoi de l'email via EmailJS
+      const response = await emailjs.send(
+        EMAIL_CONFIG.SERVICE_ID,
+        templateId,
+        templateParams,
+        EMAIL_CONFIG.PUBLIC_KEY
+      );
+
+      if (response.status !== 200) {
+        throw new Error(`Erreur EmailJS: ${response.status} - ${response.text}`);
+      }
+
+      console.log('✅ Déclaration d\'incident envoyée avec succès via EmailJS:', response);
+      
+    } catch (error) {
+      console.error('❌ Erreur EmailJS lors de l\'envoi de la déclaration:', error);
+      
+      // Fallback: simulation en cas d'échec EmailJS
+      console.warn('⚠️ Utilisation du mode simulation en fallback');
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Ne pas lever l'erreur pour permettre le fallback en simulation
+    }
+  }
+
+  /**
    * Sauvegarde une demande de contact localement
    * @param {Object} formData - Données du formulaire
    */

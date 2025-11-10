@@ -2,6 +2,7 @@
 export const EMAIL_CONFIG = {
   SERVICE_ID: import.meta.env.VITE_EMAILJS_SERVICE_ID || '',
   TEMPLATE_ID: import.meta.env.VITE_EMAILJS_TEMPLATE_ID || '',
+  INCIDENT_TEMPLATE_ID: import.meta.env.VITE_EMAILJS_INCIDENT_TEMPLATE_ID || '',
   PUBLIC_KEY: import.meta.env.VITE_EMAILJS_PUBLIC_KEY || '',
   TO_NAME: import.meta.env.VITE_EMAIL_TO_NAME || 'Équipe Innovatech Consulting',
   FROM_NAME: import.meta.env.VITE_EMAIL_FROM_NAME || 'Site Web Innovatech',

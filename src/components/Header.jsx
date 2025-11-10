@@ -44,7 +44,14 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden lg:flex">
+        <div className="hidden lg:flex lg:gap-3">
+          <Link
+            to="/declarer-incident"
+            className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-red-600 bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
+          >
+            <span>🚨</span>
+            <span>Incident</span>
+          </Link>
           <Link
             to="/contact"
             className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-slate-950/10 transition hover:-translate-y-0.5 hover:shadow-lg"
@@ -97,9 +104,17 @@ export function Header() {
               </NavLink>
             ))}
             <Link
+              to="/declarer-incident"
+              onClick={closeMenu}
+              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border-2 border-red-600 bg-red-600 px-4 py-2 text-sm font-bold text-white hover:bg-red-700"
+            >
+              <span>🚨</span>
+              <span>Déclarer un incident</span>
+            </Link>
+            <Link
               to="/contact"
               onClick={closeMenu}
-              className="mt-2 inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
+              className="inline-flex items-center justify-center rounded-full bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
             >
               Contactez-nous
             </Link>
