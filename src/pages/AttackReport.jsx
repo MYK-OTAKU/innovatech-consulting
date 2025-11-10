@@ -12,48 +12,62 @@ const fadeIn = {
 }
 
 const INCIDENT_TYPES = [
-  { value: '', label: 'Sélectionnez le type d\'incident' },
-  { value: 'ransomware', label: '🔐 Ransomware / Rançongiciel' },
-  { value: 'phishing', label: '🎣 Phishing / Hameçonnage' },
-  { value: 'ddos', label: '⚡ Attaque DDoS' },
-  { value: 'malware', label: '🦠 Malware / Virus' },
-  { value: 'data-breach', label: '💾 Fuite de données' },
-  { value: 'account-compromise', label: '👤 Compte compromis' },
-  { value: 'website-defacement', label: '🌐 Défaçage de site web' },
-  { value: 'social-engineering', label: '🎭 Ingénierie sociale' },
-  { value: 'insider-threat', label: '👔 Menace interne' },
-  { value: 'zero-day', label: '🎯 Exploitation Zero-day' },
-  { value: 'other', label: '🔍 Autre (préciser dans la description)' },
+  { value: 'malware', label: 'Malware / Ransomware' },
+  { value: 'phishing', label: 'Phishing / Email suspect' },
+  { value: 'intrusion', label: 'Intrusion / Compromission de compte' },
+  { value: 'data-breach', label: 'Fuite de données' },
+  { value: 'ddos', label: 'Attaque DDoS' },
+  { value: 'other', label: 'Autre (à préciser)' },
+]
+
+const IMPACT_LEVELS = [
+  { value: 'low', label: 'Faible' },
+  { value: 'medium', label: 'Moyen' },
+  { value: 'critical', label: 'Critique' },
 ]
 
 const URGENCY_LEVELS = [
-  { value: 'critical', label: '🚨 Critique - Intervention immédiate', color: 'text-red-600', bg: 'bg-red-50 border-red-300' },
-  { value: 'high', label: '⚠️ Élevée - Très urgente', color: 'text-orange-600', bg: 'bg-orange-50 border-orange-300' },
-  { value: 'medium', label: '📊 Moyenne - Attention requise', color: 'text-yellow-600', bg: 'bg-yellow-50 border-yellow-300' },
-  { value: 'low', label: '📌 Faible - Analyse recommandée', color: 'text-blue-600', bg: 'bg-blue-50 border-blue-300' },
+  { value: 'non-urgent', label: 'Non urgente' },
+  { value: 'urgent', label: 'Urgente' },
+  { value: 'critical', label: 'Critique' },
 ]
 
 export function AttackReport() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
+    fullName: '',
     company: '',
-    incidentType: '',
-    urgency: 'high',
+    position: '',
+    phone: '',
+    email: '',
+    detectionDate: '',
+    incidentTypes: [],
+    otherIncidentType: '',
+    impactedSystem: '',
     description: '',
-    impactedSystems: '',
-    whenOccurred: '',
-    currentStatus: '',
+    actionsTaken: '',
+    impact: '',
+    urgency: '',
+    attestation: false,
   })
 
   const [status, setStatus] = useState({ type: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    const { name, value, type, checked } = e.target
+    
+    if (type === 'checkbox' && name === 'incidentTypes') {
+      const currentTypes = formData.incidentTypes
+      if (checked) {
+        setFormData((prev) => ({ ...prev, incidentTypes: [...currentTypes, value] }))
+      } else {
+        setFormData((prev) => ({ ...prev, incidentTypes: currentTypes.filter(t => t !== value) }))
+      }
+    } else if (type === 'checkbox') {
+      setFormData((prev) => ({ ...prev, [name]: checked }))
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }))
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -74,23 +88,26 @@ export function AttackReport() {
 
       setStatus({
         type: 'success',
-        message: '✅ Votre déclaration a été reçue. Notre équipe CSIRT vous contactera dans les plus brefs délais.',
+        message: '✅ Votre déclaration a été reçue. Notre équipe CSIRT la traitera dans un délai maximum de 4 heures ouvrées.',
       })
 
       // Réinitialiser le formulaire après succès
       setTimeout(() => {
         setFormData({
-          firstName: '',
-          lastName: '',
-          email: '',
-          phone: '',
+          fullName: '',
           company: '',
-          incidentType: '',
-          urgency: 'high',
+          position: '',
+          phone: '',
+          email: '',
+          detectionDate: '',
+          incidentTypes: [],
+          otherIncidentType: '',
+          impactedSystem: '',
           description: '',
-          impactedSystems: '',
-          whenOccurred: '',
-          currentStatus: '',
+          actionsTaken: '',
+          impact: '',
+          urgency: '',
+          attestation: false,
         })
       }, 1000)
       
@@ -191,7 +208,7 @@ export function AttackReport() {
               </div>
               <h3 className="mb-2 text-lg font-bold text-slate-900">Réponse rapide</h3>
               <p className="text-sm leading-relaxed text-slate-600">
-                Notre équipe analyse votre déclaration et vous contacte sous 15 minutes pour les incidents critiques
+                Votre rapport sera traité dans un délai maximum de 4 heures ouvrées par notre CSIRT
               </p>
             </motion.div>
 
@@ -242,91 +259,59 @@ export function AttackReport() {
             </div>
 
             <form onSubmit={handleSubmit} className="space-y-8">
-              {/* Niveau d'urgence */}
-              <div>
-                <label className="mb-3 block text-sm font-bold text-slate-900">
-                  Niveau d'urgence <span className="text-red-500">*</span>
-                </label>
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {URGENCY_LEVELS.map((level) => (
-                    <label
-                      key={level.value}
-                      className={`flex cursor-pointer items-center gap-3 rounded-xl border-2 p-4 transition ${
-                        formData.urgency === level.value
-                          ? `${level.bg} border-current ${level.color}`
-                          : 'border-slate-200 bg-white hover:border-slate-300'
-                      }`}
-                    >
-                      <input
-                        type="radio"
-                        name="urgency"
-                        value={level.value}
-                        checked={formData.urgency === level.value}
-                        onChange={handleChange}
-                        className="h-5 w-5"
-                        required
-                      />
-                      <span className={`text-sm font-semibold ${formData.urgency === level.value ? level.color : 'text-slate-700'}`}>
-                        {level.label}
-                      </span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              {/* Informations personnelles */}
+              {/* Informations du déclarant */}
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
                 <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-                  <span>👤</span>
-                  <span>Vos informations</span>
+                  <span>🔹</span>
+                  <span>Informations du déclarant</span>
                 </h3>
                 
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <div>
-                    <label htmlFor="firstName" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Prénom <span className="text-red-500">*</span>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="fullName" className="mb-2 block text-sm font-semibold text-slate-700">
+                      Nom et prénom <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
-                      id="firstName"
-                      name="firstName"
-                      value={formData.firstName}
+                      id="fullName"
+                      name="fullName"
+                      value={formData.fullName}
                       onChange={handleChange}
                       required
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Jean"
+                      placeholder="Ex: Jean Dupont"
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="lastName" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Nom <span className="text-red-500">*</span>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="company" className="mb-2 block text-sm font-semibold text-slate-700">
+                      Entreprise / Organisation <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
-                      id="lastName"
-                      name="lastName"
-                      value={formData.lastName}
+                      id="company"
+                      name="company"
+                      value={formData.company}
                       onChange={handleChange}
                       required
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Dupont"
+                      placeholder="Nom de votre entreprise ou organisation"
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Email <span className="text-red-500">*</span>
+                  <div className="sm:col-span-2">
+                    <label htmlFor="position" className="mb-2 block text-sm font-semibold text-slate-700">
+                      Fonction <span className="text-red-500">*</span>
                     </label>
                     <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
+                      type="text"
+                      id="position"
+                      name="position"
+                      value={formData.position}
                       onChange={handleChange}
                       required
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      placeholder="jean.dupont@entreprise.com"
+                      placeholder="Ex: Responsable IT, DSI, Manager..."
                     />
                   </div>
 
@@ -346,61 +331,41 @@ export function AttackReport() {
                     />
                   </div>
 
-                  <div className="sm:col-span-2">
-                    <label htmlFor="company" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Entreprise / Organisation <span className="text-red-500">*</span>
+                  <div>
+                    <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-700">
+                      Email <span className="text-red-500">*</span>
                     </label>
                     <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      value={formData.company}
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
                       onChange={handleChange}
                       required
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Nom de votre entreprise"
+                      placeholder="votre.email@entreprise.com"
                     />
                   </div>
                 </div>
               </div>
 
-              {/* Détails de l'incident */}
+              {/* Informations sur l'incident */}
               <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
                 <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-                  <span>🔍</span>
-                  <span>Détails de l'incident</span>
+                  <span>🔹</span>
+                  <span>Informations sur l'incident</span>
                 </h3>
 
                 <div className="space-y-4">
                   <div>
-                    <label htmlFor="incidentType" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Type d'incident <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      id="incidentType"
-                      name="incidentType"
-                      value={formData.incidentType}
-                      onChange={handleChange}
-                      required
-                      className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                    >
-                      {INCIDENT_TYPES.map((type) => (
-                        <option key={type.value} value={type.value}>
-                          {type.label}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="whenOccurred" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Quand l'incident s'est-il produit ? <span className="text-red-500">*</span>
+                    <label htmlFor="detectionDate" className="mb-2 block text-sm font-semibold text-slate-700">
+                      Date et heure de détection <span className="text-red-500">*</span>
                     </label>
                     <input
                       type="datetime-local"
-                      id="whenOccurred"
-                      name="whenOccurred"
-                      value={formData.whenOccurred}
+                      id="detectionDate"
+                      name="detectionDate"
+                      value={formData.detectionDate}
                       onChange={handleChange}
                       required
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
@@ -408,8 +373,58 @@ export function AttackReport() {
                   </div>
 
                   <div>
+                    <label className="mb-3 block text-sm font-semibold text-slate-700">
+                      Type d'incident <span className="text-red-500">*</span>
+                    </label>
+                    <div className="space-y-2">
+                      {INCIDENT_TYPES.map((type) => (
+                        <label
+                          key={type.value}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg border border-slate-200 bg-white p-3 transition hover:border-red-300 hover:bg-red-50/30"
+                        >
+                          <input
+                            type="checkbox"
+                            name="incidentTypes"
+                            value={type.value}
+                            checked={formData.incidentTypes.includes(type.value)}
+                            onChange={handleChange}
+                            className="h-5 w-5 rounded border-slate-300 text-red-600 focus:ring-2 focus:ring-red-500/20"
+                          />
+                          <span className="text-sm font-medium text-slate-700">{type.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                    {formData.incidentTypes.includes('other') && (
+                      <input
+                        type="text"
+                        name="otherIncidentType"
+                        value={formData.otherIncidentType}
+                        onChange={handleChange}
+                        placeholder="Précisez le type d'incident..."
+                        className="mt-3 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
+                      />
+                    )}
+                  </div>
+
+                  <div>
+                    <label htmlFor="impactedSystem" className="mb-2 block text-sm font-semibold text-slate-700">
+                      Système ou service impacté <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="impactedSystem"
+                      name="impactedSystem"
+                      value={formData.impactedSystem}
+                      onChange={handleChange}
+                      required
+                      className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
+                      placeholder="Ex: serveur mail, poste utilisateur, application métier..."
+                    />
+                  </div>
+
+                  <div>
                     <label htmlFor="description" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Description détaillée de l'incident <span className="text-red-500">*</span>
+                      Description de l'incident <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       id="description"
@@ -417,45 +432,122 @@ export function AttackReport() {
                       value={formData.description}
                       onChange={handleChange}
                       required
-                      rows={6}
+                      rows={5}
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Décrivez en détail ce qui s'est passé : symptômes observés, actions déjà entreprises, messages d'erreur, comportements anormaux..."
-                    />
-                    <p className="mt-2 text-xs text-slate-500">
-                      Plus vous fournissez de détails, plus notre intervention sera rapide et efficace
-                    </p>
-                  </div>
-
-                  <div>
-                    <label htmlFor="impactedSystems" className="mb-2 block text-sm font-semibold text-slate-700">
-                      Systèmes / données impactés
-                    </label>
-                    <textarea
-                      id="impactedSystems"
-                      name="impactedSystems"
-                      value={formData.impactedSystems}
-                      onChange={handleChange}
-                      rows={3}
-                      className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Ex: Serveurs de production, bases de données clients, poste de travail du service comptable..."
+                      placeholder="Décrivez les symptômes observés, messages d'erreur, utilisateurs touchés, etc."
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="currentStatus" className="mb-2 block text-sm font-semibold text-slate-700">
-                      État actuel de la situation
+                    <label htmlFor="actionsTaken" className="mb-2 block text-sm font-semibold text-slate-700">
+                      Actions déjà entreprises
                     </label>
                     <textarea
-                      id="currentStatus"
-                      name="currentStatus"
-                      value={formData.currentStatus}
+                      id="actionsTaken"
+                      name="actionsTaken"
+                      value={formData.actionsTaken}
                       onChange={handleChange}
-                      rows={3}
+                      rows={4}
                       className="w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      placeholder="Ex: Systèmes déconnectés du réseau, sauvegardes en cours, investigation interne démarrée..."
+                      placeholder="Ex: déconnexion du poste, changement de mot de passe, notification interne, etc."
                     />
                   </div>
                 </div>
+              </div>
+
+              {/* Évaluation initiale */}
+              <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
+                  <span>🔹</span>
+                  <span>Évaluation initiale</span>
+                </h3>
+
+                <div className="space-y-4">
+                  <div>
+                    <label className="mb-3 block text-sm font-semibold text-slate-700">
+                      Impact estimé <span className="text-red-500">*</span>
+                    </label>
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      {IMPACT_LEVELS.map((level) => (
+                        <label
+                          key={level.value}
+                          className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 p-4 transition ${
+                            formData.impact === level.value
+                              ? 'border-red-500 bg-red-50 text-red-700'
+                              : 'border-slate-200 bg-white hover:border-slate-300'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="impact"
+                            value={level.value}
+                            checked={formData.impact === level.value}
+                            onChange={handleChange}
+                            required
+                            className="h-4 w-4"
+                          />
+                          <span className="text-sm font-semibold">{level.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="mb-3 block text-sm font-semibold text-slate-700">
+                      Urgence estimée <span className="text-red-500">*</span>
+                    </label>
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      {URGENCY_LEVELS.map((level) => (
+                        <label
+                          key={level.value}
+                          className={`flex cursor-pointer items-center justify-center gap-2 rounded-lg border-2 p-4 transition ${
+                            formData.urgency === level.value
+                              ? 'border-orange-500 bg-orange-50 text-orange-700'
+                              : 'border-slate-200 bg-white hover:border-slate-300'
+                          }`}
+                        >
+                          <input
+                            type="radio"
+                            name="urgency"
+                            value={level.value}
+                            checked={formData.urgency === level.value}
+                            onChange={handleChange}
+                            required
+                            className="h-4 w-4"
+                          />
+                          <span className="text-sm font-semibold">{level.label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Déclaration et attestation */}
+              <div className="rounded-2xl border-2 border-blue-200 bg-blue-50 p-6">
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
+                  <span>🔹</span>
+                  <span>Déclaration</span>
+                </h3>
+                <p className="mb-4 text-sm leading-relaxed text-slate-700">
+                  Je confirme que les informations ci-dessus sont exactes et transmises à des fins d'analyse par le CSIRT Innovatech.
+                </p>
+                <label className="flex cursor-pointer items-start gap-3 rounded-lg border-2 border-blue-300 bg-white p-4 transition hover:border-blue-400">
+                  <input
+                    type="checkbox"
+                    name="attestation"
+                    checked={formData.attestation}
+                    onChange={handleChange}
+                    required
+                    className="mt-0.5 h-5 w-5 rounded border-slate-300 text-blue-600 focus:ring-2 focus:ring-blue-500/20"
+                  />
+                  <span className="text-sm font-semibold text-slate-900">
+                    J'atteste l'exactitude des informations fournies <span className="text-red-500">*</span>
+                  </span>
+                </label>
+                <p className="mt-4 text-xs text-slate-600">
+                  💡 Votre rapport sera traité dans un délai maximum de 4 heures ouvrées par notre CSIRT.
+                </p>
               </div>
 
               {/* Message de statut */}
@@ -481,9 +573,9 @@ export function AttackReport() {
                 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !formData.attestation}
                   className={`inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-bold text-white shadow-lg transition ${
-                    isSubmitting
+                    isSubmitting || !formData.attestation
                       ? 'cursor-not-allowed bg-slate-400'
                       : 'bg-gradient-to-r from-red-600 to-orange-600 hover:-translate-y-0.5 hover:shadow-xl'
                   }`}
@@ -499,7 +591,7 @@ export function AttackReport() {
                   ) : (
                     <>
                       <span>📤</span>
-                      <span>Envoyer la déclaration</span>
+                      <span>Soumettre la déclaration</span>
                     </>
                   )}
                 </button>
