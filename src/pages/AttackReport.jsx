@@ -12,12 +12,12 @@ const fadeIn = {
 }
 
 const INCIDENT_TYPES = [
-  { value: 'malware', label: 'Malware / Ransomware' },
-  { value: 'phishing', label: 'Phishing / Email suspect' },
-  { value: 'intrusion', label: 'Intrusion / Compromission de compte' },
-  { value: 'data-breach', label: 'Fuite de données' },
-  { value: 'ddos', label: 'Attaque DDoS' },
-  { value: 'other', label: 'Autre (à préciser)' },
+  { value: 'malware', label: 'Malware / Ransomware', icon: '', color: 'red' },
+  { value: 'phishing', label: 'Phishing / Email suspect', icon: '', color: 'orange' },
+  { value: 'intrusion', label: 'Intrusion / Compromission de compte', icon: '', color: 'purple' },
+  { value: 'data-breach', label: 'Fuite de données', icon: '', color: 'blue' },
+  { value: 'ddos', label: 'Attaque DDoS', icon: '', color: 'yellow' },
+  { value: 'other', label: 'Autre (à préciser)', icon: '', color: 'slate' },
 ]
 
 const IMPACT_LEVELS = [
@@ -376,33 +376,64 @@ export function AttackReport() {
                     <label className="mb-3 block text-sm font-semibold text-slate-700">
                       Type d'incident <span className="text-red-500">*</span>
                     </label>
-                    <div className="space-y-2">
-                      {INCIDENT_TYPES.map((type) => (
-                        <label
-                          key={type.value}
-                          className="flex cursor-pointer items-center gap-3 rounded-lg border border-slate-200 bg-white p-3 transition hover:border-red-300 hover:bg-red-50/30"
-                        >
-                          <input
-                            type="checkbox"
-                            name="incidentTypes"
-                            value={type.value}
-                            checked={formData.incidentTypes.includes(type.value)}
-                            onChange={handleChange}
-                            className="h-5 w-5 rounded border-slate-300 text-red-600 focus:ring-2 focus:ring-red-500/20"
-                          />
-                          <span className="text-sm font-medium text-slate-700">{type.label}</span>
-                        </label>
-                      ))}
+                    <p className="mb-4 text-xs text-slate-600">Sélectionnez un ou plusieurs types d'incident</p>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {INCIDENT_TYPES.map((type) => {
+                        const isSelected = formData.incidentTypes.includes(type.value)
+                        const colorClasses = {
+                          red: isSelected ? 'border-red-500 bg-red-50 shadow-md' : 'border-red-200 hover:border-red-400 hover:bg-red-50/50',
+                          orange: isSelected ? 'border-orange-500 bg-orange-50 shadow-md' : 'border-orange-200 hover:border-orange-400 hover:bg-orange-50/50',
+                          purple: isSelected ? 'border-purple-500 bg-purple-50 shadow-md' : 'border-purple-200 hover:border-purple-400 hover:bg-purple-50/50',
+                          blue: isSelected ? 'border-blue-500 bg-blue-50 shadow-md' : 'border-blue-200 hover:border-blue-400 hover:bg-blue-50/50',
+                          yellow: isSelected ? 'border-yellow-500 bg-yellow-50 shadow-md' : 'border-yellow-200 hover:border-yellow-400 hover:bg-yellow-50/50',
+                          slate: isSelected ? 'border-slate-500 bg-slate-50 shadow-md' : 'border-slate-200 hover:border-slate-400 hover:bg-slate-50/50',
+                        }
+                        
+                        return (
+                          <label
+                            key={type.value}
+                            className={`group relative flex cursor-pointer items-start gap-3 rounded-xl border-2 bg-white p-4 transition-all duration-200 ${colorClasses[type.color]}`}
+                          >
+                            <input
+                              type="checkbox"
+                              name="incidentTypes"
+                              value={type.value}
+                              checked={isSelected}
+                              onChange={handleChange}
+                              className="mt-0.5 h-5 w-5 rounded border-slate-300 text-red-600 transition focus:ring-2 focus:ring-red-500/20"
+                            />
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2">
+                                <span className="text-2xl">{type.icon}</span>
+                                <span className="text-sm font-bold text-slate-900">{type.label}</span>
+                              </div>
+                            </div>
+                            {isSelected && (
+                              <div className="absolute right-3 top-3">
+                                <svg className="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                </svg>
+                              </div>
+                            )}
+                          </label>
+                        )
+                      })}
                     </div>
                     {formData.incidentTypes.includes('other') && (
-                      <input
-                        type="text"
-                        name="otherIncidentType"
-                        value={formData.otherIncidentType}
-                        onChange={handleChange}
-                        placeholder="Précisez le type d'incident..."
-                        className="mt-3 w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
-                      />
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        className="mt-3"
+                      >
+                        <input
+                          type="text"
+                          name="otherIncidentType"
+                          value={formData.otherIncidentType}
+                          onChange={handleChange}
+                          placeholder="Précisez le type d'incident..."
+                          className="w-full rounded-lg border-2 border-slate-300 bg-white px-4 py-3 text-slate-900 transition focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/20"
+                        />
+                      </motion.div>
                     )}
                   </div>
 
