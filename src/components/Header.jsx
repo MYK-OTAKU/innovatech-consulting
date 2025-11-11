@@ -45,13 +45,15 @@ export function Header() {
         </nav>
 
         <div className="hidden lg:flex lg:gap-3">
-          <Link
-            to="/declarer-incident"
+          <a
+            href="https://incident-innovatech.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-red-600 bg-red-600 px-5 py-2.5 text-sm font-bold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg"
           >
             <span>🚨</span>
             <span>Incident</span>
-          </Link>
+          </a>
           <Link
             to="/contact"
             className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white shadow-sm shadow-slate-950/10 transition hover:-translate-y-0.5 hover:shadow-lg"
@@ -103,14 +105,16 @@ export function Header() {
                 {link.label}
               </NavLink>
             ))}
-            <Link
-              to="/declarer-incident"
+            <a
+              href="https://incident-innovatech.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={closeMenu}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-full border-2 border-red-600 bg-red-600 px-4 py-2 text-sm font-bold text-white hover:bg-red-700"
             >
               <span>🚨</span>
               <span>Déclarer un incident</span>
-            </Link>
+            </a>
             <Link
               to="/contact"
               onClick={closeMenu}

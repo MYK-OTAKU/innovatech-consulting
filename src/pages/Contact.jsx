@@ -353,13 +353,15 @@ export function Contact() {
                       +212 5 37 77 88 99
                     </a>
                   </div>
-                  <Link
-                    to="/declarer-incident"
+                  <a
+                    href="https://incident-innovatech.netlify.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-red-600 px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-red-700 w-full"
                   >
                     <span>🚨</span>
                     <span>Déclarer un incident</span>
-                  </Link>
+                  </a>
                   <div className="mt-4 rounded-lg bg-white/60 px-4 py-2">
                     <p className="text-xs font-semibold text-slate-700">
                       ⚡ Réponse sous 15 minutes
